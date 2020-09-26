@@ -144,7 +144,7 @@ sponsors:
     level: platinum
   - id: sensu
     level: platinum
-  - id: instana
+  - id: instana-before-20200127
     level: platinum
   - id: dynatrace
     level: gold
@@ -154,7 +154,7 @@ sponsors:
     level: platinum
   - id: puppet
     level: platinum
-  - id: logz
+  - id: logz-before-20200211
     level: platinum
   - id: rundeck
     level: gold
@@ -178,11 +178,11 @@ sponsors:
     level: platinum
   - id: valiantys
     level: gold
-  - id: googlecloud
+  - id: googlecloud-before-20190402
     level: gold
   - id: trinetx
     level: platinum
-  - id: chaossearch
+  - id: chaossearch-before-20200120
     level: gold
   - id: redgate
     level: gold
@@ -194,7 +194,7 @@ sponsors:
     level: gold
   - id: ca
     level: alacarte
-  - id: launch-darkly
+  - id: launch-darkly-before-20200828
     level: alacarte
   - id: genians
     level: alacarte

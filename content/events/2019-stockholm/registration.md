@@ -4,8 +4,6 @@ Type = "event"
 Description = "Registration for devopsdays Stockholm 2019"
 +++
 
-<div style="width:100%; text-align:left;">
+Registration for DevOpsDays Stockholm is now closed. We're sold out!
 
-Embed registration iframe/link/etc.
-</div></div>
-</div>
+If you have any questions please contact us at {{< email_organizers >}}.

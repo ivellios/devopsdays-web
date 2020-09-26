@@ -34,6 +34,12 @@
     {{- with .Params.pdf -}}
       {{- $.Scratch.Set (printf "%s-slides_link" ($.Scratch.Get "base_file_name")) . }}
     {{- end -}}
+    {{- with .Params.notist -}}
+      {{- $.Scratch.Set (printf "%s-slides_link" ($.Scratch.Get "base_file_name")) (printf "https://noti.st/%s" .) }}
+    {{- end -}}
+    {{- with .Params.slideslive -}}
+      {{- $.Scratch.Set (printf "%s-slides_link" ($.Scratch.Get "base_file_name")) . }}
+    {{- end -}}
     {{- with .Params.slides -}}
       {{- $.Scratch.Set (printf "%s-slides_link" ($.Scratch.Get "base_file_name")) . }}
     {{- end -}}
@@ -117,7 +123,7 @@
                               {{- if .custom_url -}}
                                 <a href="{{ .custom_url | safeURL }}">{{ $.Scratch.Get (printf "%s-speaker" .title) }} - {{ $.Scratch.Get .title }}</a><br/>
                               {{- else -}}
-                                <a href="{{ (printf "events/%s/program/%s" $e.name .title) | absURL }}">{{ $.Scratch.Get (printf "%s-speaker" .title) }} - {{ $.Scratch.Get .title }}</a><br/>
+                                <a href="{{ (printf "/events/%s/program/%s" $e.name .title) }}">{{ $.Scratch.Get (printf "%s-speaker" .title) }} - {{ $.Scratch.Get .title }}</a><br/>
                               {{- end -}}
                               {{- if eq  ($.Scratch.Get "icons")  "TRUE" -}}
                                 {{- with ($.Scratch.Get (printf "%s-video_link" .title)) -}}&nbsp;<a href="{{ . }}"><i class="fa fa-video-camera" aria-hidden="true"></i></a>&nbsp;{{- end -}}
@@ -129,39 +135,50 @@
 
                               {{- else if eq .type "ignite" -}}
                               {{ .title }}
-                              <!-- do ignite stuff here -->
-                                {{- with $e -}}
-                                  {{- if .ignites -}}
-                                    {{- $ignites := (where $e.ignites "date" ($.Scratch.Get "date")) -}}
-                                    {{- $ignites_len := (len $ignites) -}}
-                                    {{- if ge $ignites_len 1 -}}
-                                      <ul class="list-unstyled">
-                                        {{- range where $e.ignites "date" ($.Scratch.Get "date") -}}
-                                          <li>
-                                          {{- if and ($.Scratch.Get .title) (.custom_url) -}}
-                                            <a href="{{ .custom_url | safeURL }}">{{ $.Scratch.Get (printf "%s-speaker" .title) }} - {{ $.Scratch.Get .title }}</a>
-                                          {{- else if ($.Scratch.Get .title) -}}
-                                            <a href="/events/{{ $e.name }}/program/{{ .title }}">{{ $.Scratch.Get (printf "%s-speaker" .title) }} - {{ $.Scratch.Get .title }}</a>
-                                          {{- else -}}
-                                            {{ .title }}
-                                          {{- end -}}
-                                          {{- if eq  ($.Scratch.Get "icons")  "TRUE" -}}
-                                            {{- with ($.Scratch.Get (printf "%s-video_link" .title)) -}}&nbsp;<a href="{{ . }}"><i class="fa fa-video-camera" aria-hidden="true"></i></a>&nbsp;{{- end -}}
-                                            {{- with ($.Scratch.Get (printf "%s-slides_link" .title)) -}}&nbsp;<a href="{{ . }}"><i class="fa fa-file-text-o" aria-hidden="true"></i></a>&nbsp;{{- end -}}  
-                                          {{- end -}}
-                                          </li>
-                                        {{- end -}}<!-- rang ignites-->
-                                      </ul>
-                                      {{- end -}} <!-- if ge $ignites_len 1 -->
+                              <!-- new ignite code start -->
+                              <ul class = "list-unstyled">
+                                {{- if .block -}}
+                                  {{- $block := .block -}}
+                                  {{- range $e.ignites -}}
+                                    {{- if eq .block $block -}}
+                                      <li>
+                                        <a href="/events/{{ $e.name }}/program/{{ .title }}">{{ $.Scratch.Get (printf "%s-speaker" .title) }} - {{ $.Scratch.Get .title }}</a>
+                                        {{- if eq  ($.Scratch.Get "icons")  "TRUE" -}}
+                                          {{- with ($.Scratch.Get (printf "%s-video_link" .title)) -}}&nbsp;<a href="{{ . }}"><i class="fa fa-video-camera" aria-hidden="true"></i></a>&nbsp;{{- end -}}
+                                          {{- with ($.Scratch.Get (printf "%s-slides_link" .title)) -}}&nbsp;<a href="{{ . }}"><i class="fa fa-file-text-o" aria-hidden="true"></i></a>&nbsp;{{- end -}}  
+                                        {{- end -}}
+      
+                                      </li>
+                                    {{- end -}}
+                                  {{- end -}}
+                                {{- else -}}
+                                  {{- range where $e.ignites "date" ($.Scratch.Get "date") -}}
+                                    {{- if not .block -}}
+                                      <li>
+                                        <a href="/events/{{ $e.name }}/program/{{ .title }}">{{ $.Scratch.Get (printf "%s-speaker" .title) }} - {{ $.Scratch.Get .title }}</a>
+                                        {{- if eq  ($.Scratch.Get "icons")  "TRUE" -}}
+                                          {{- with ($.Scratch.Get (printf "%s-video_link" .title)) -}}&nbsp;<a href="{{ . }}"><i class="fa fa-video-camera" aria-hidden="true"></i></a>&nbsp;{{- end -}}
+                                          {{- with ($.Scratch.Get (printf "%s-slides_link" .title)) -}}&nbsp;<a href="{{ . }}"><i class="fa fa-file-text-o" aria-hidden="true"></i></a>&nbsp;{{- end -}}  
+                                        {{- end -}}
+      
+                                      </li>
+                                    {{- end -}}
                                   {{- end -}}
                                 {{- end -}}
-                              <!-- end ignite stuff here -->
+
+
+
+                              </ul>
+
+
+
+                              <!-- new ignite code end -->
                               <!-- do open-space stuff here -->
                               {{- else if (eq .type "open-space") -}}
                                 {{- if .custom_url -}}
                                   <a href="{{ .custom_url | safeURL }}">{{ .title }}</a><br/>
                                 {{- else -}}
-                                  <a href="{{ "open-space-format/" | absURL }}">{{ .title }}</a><br/>
+                                  <a href="{{ "/open-space-format/" }}">{{ .title }}</a><br/>
                                 {{- end -}}
                               {{- else -}}
                                 {{ .title }}

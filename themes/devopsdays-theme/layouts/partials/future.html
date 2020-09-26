@@ -1,6 +1,7 @@
 {{- range sort $.Site.Data.events "startdate" -}}
   {{- if .startdate -}}
-    {{- if ge (time .enddate) (now.AddDate 0 0 -1) -}}
+  {{- if ne .cancel "true" -}}
+    {{- if ge (time .enddate) now -}}
       {{- if ne ($.Scratch.Get "year") (dateFormat "2006" .startdate) -}}
         {{- $.Scratch.Set "year" (dateFormat "2006" .startdate) -}}
         {{- $.Scratch.Set "year-displayed" "false" -}}
@@ -20,28 +21,31 @@
       {{- end -}}
       {{- if or (ne (time .startdate).Month (time .enddate).Month) (ne (time .startdate).Day (time .enddate).Day) -}}
         {{- if eq (time .startdate).Month (time .enddate).Month -}}
-          <a href = "{{ (printf "events/%s" .name ) | absURL }}" class = "left-nav-event">
+          <a href = "{{ (printf "/events/%s" .name ) }}" class = "left-nav-event">
         {{ dateFormat "Jan 2" .startdate }} - {{ dateFormat "2" .enddate }}:
         {{ .city }}
           </a><br />
         {{- else -}}
-      <a href = "{{ (printf "events/%s" .name) | absURL }}" class = "left-nav-event">
+      <a href = "{{ (printf "/events/%s" .name) }}" class = "left-nav-event">
         {{ dateFormat "Jan 2" .startdate }} - {{ dateFormat "Jan 2" .enddate }}:
         {{ .city }}
       </a><br />
         {{- end -}}
       {{- else -}}
-      <a href = "{{ (printf "events/%s" .name) | absURL }}" class = "left-nav-event">
+      <a href = "{{ (printf "/events/%s" .name) }}" class = "left-nav-event">
         {{ dateFormat "Jan 2" .startdate }}:
         {{ .city }}
       </a><br />
       {{- end -}}
+    {{- end -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}
 <h3 class="left-nav-year">TBD</h3>
 {{- range $.Site.Data.events -}}
   {{- if not .startdate -}}
-    <a href = "{{ (printf "events/%s" .name) | absURL }}" class = "left-nav-event">{{ .city }}</a><br />
+    {{- if ne .cancel "true" -}}
+      <a href = "{{ (printf "/events/%s" .name) }}" class = "left-nav-event">{{ .city }}</a><br />
+    {{- end -}}
   {{- end -}}
 {{- end -}}

@@ -78,7 +78,7 @@ sponsors:
     level: gold
   - id: oracle-dyn
     level: gold
-  - id: pivotal
+  - id: pivotal-before-20190307
     level: gold
   - id: red-ventures
     level: gold
@@ -97,7 +97,7 @@ sponsors:
     level: silver
   - id: influxdata-before-201802
     level: silver
-  - id: instana
+  - id: instana-before-20200127
     level: silver
   - id: newrelic
     level: silver

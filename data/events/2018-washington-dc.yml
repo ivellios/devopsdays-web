@@ -228,7 +228,7 @@ sponsors:
     level: platinum
   - id: cloudbees
     level: platinum
-  - id: pivotal
+  - id: pivotal-before-20190307
     level: platinum
   - id: validatek
     level: platinum
@@ -264,7 +264,7 @@ sponsors:
     level: platinum
   - id: mesosphere
     level: platinum
-  - id: redhat
+  - id: redhat-before-20190528
     level: platinum
   - id: women-who-code-dc
     level: community

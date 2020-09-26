@@ -33,7 +33,7 @@ fi
 [ -z "${year}" ] && year="$default_year"
 
 if [[ ! -z $DOD_CITY ]] ; then
-  city=$DOD_LUG_CITY
+  city=$DOD_CITY
 else
   read -p "Enter your city name: " city
 fi
@@ -49,6 +49,16 @@ twitter=$(echo $twitter | sed 's/@//')
 # We use the term event_slug in the hugo files too
 event_slug=$year-$city_slug
 
+# Update the redirection for a previous year of this event to the desired year
+if grep -q "^/$city_slug" "../static/_redirects";
+then
+    SEDCMD "/^\/$city_slug/ s/.\{4\}-$city_slug/$event_slug/" "../static/_redirects"
+else
+# If a previous-year event does not exist, create the redirection for the desired year
+  SEDCMD -e '$a\' "../static/_redirects"
+  echo "/$city_slug/*            /events/$event_slug/:splat           302" >> "../static/_redirects"
+fi
+
 # Create default event datafile
 eventdatafile="../data/events/$event_slug.yml"
 cp examples/data/events/yyyy-city.yml $eventdatafile
@@ -59,8 +69,8 @@ SEDCMD "s/yourlocation/$city/" $eventdatafile
 SEDCMD "s/yyyy-city/$event_slug/" $eventdatafile
 SEDCMD "s/devopsdayscityabbr/$twitter/" $eventdatafile
 
-# Name the email lists
-SEDCMD "s/city-year/$city_slug-$year/" $eventdatafile
+# Name the email list
+SEDCMD "s/city_email/$city_slug/" $eventdatafile
 
 # Seed initial files for event
 cp -r examples/content/events/yyyy-city ../content/events/$event_slug

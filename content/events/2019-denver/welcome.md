@@ -7,6 +7,8 @@ aliases = ["/events/2019-denver"]
 Description = "DevOpsDays Denver 2019!"
 +++
 
+<div style="background-color: red;">This event has passed. Please visit the <a href="https://devopsdays.org/events/2020-denver/">DevOpsDays Denver 2020 page</a> for updated event information.</div>
+
 <h2>{{< event_start >}} - {{< event_end >}}</h2>
 
 <div style="text-align:right; float: right;">
@@ -19,11 +21,6 @@ Description = "DevOpsDays Denver 2019!"
   </p>
 </div>
 
-<div style="font-size: 1.3em;">
-  <p>
-    <a href="https://www.papercall.io/dod-den-2019">CFP IS OPEN!!! Please check it out here!</a>
-  </p>
-</div>
 * * *
 
 <div class = "row" style="font-size: 1.5em;">

@@ -47,7 +47,7 @@ We greatly value sponsors for this open event. If you are interested, please ema
 {{< email_organizers >}}.
 
 <table border=1 cellpadding=5>
-  <tr><th>Packages                           </th><th>Gold Sponsor</th><th>Silver Sponsor</th><th>Community Sponsor</th></tr>
+  <tr><th>Packages                           </th><th>Gold Sponsor</th><th>Silver Sponsor</th><th>Bronze Sponsor</th></tr>
   <tr><td>Price                              </td><td>60000 SEK   </td><td>40000 SEK     </td><td>15000 SEK</td></tr>
   <tr><td>Tickets included                   </td><td>6           </td><td>4             </td><td>2</td></tr>
   <tr><td>Additional ticket discount         </td><td>20%         </td><td>15%           </td><td>n/a</td></tr>
@@ -95,10 +95,11 @@ This event is organized by the DevOpsDays Stockholm non-profit organization. For
 further information please contact the sponsorship team by email or phone:
 
 <table border=0>
-  <tr><td>Email:</td><td colspan=2>{{< email_organizers >}}
-  <tr><td style="width: 70px;height: 10px"></td></tr>
-  <tr><td>Phone:</td><td>Johan Virtanen</td><td>+46 730 810 252
-  <tr><td>       </td><td>Mark Baker    </td><td>+46 709 12 44 26
+  <tr><td>Email:</td><td colspan=2>{{< email_organizers >}}      </td></tr>
+  <tr><td style="width: 70px;height: 10px">                      </td></tr>
+  <tr><td>Phone:</td><td>Johan Virtanen </td><td>+46 730 810 252 </td></tr>
+  <tr><td>      </td><td>Mark Baker     </td><td>+46 709 12 44 26</td></tr>
+  <tr><td>      </td><td>Matthias Grüter</td><td>+46 706 566 283 </td></tr>
 </table>
 <br/>
 
